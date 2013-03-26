@@ -1,11 +1,11 @@
 Summary:	GObject-introspection based JavaScript bindings
 Name:		gjs
-Version:	1.34.0
+Version:	1.36.0
 Release:	1
 License:	MPL1.1/LGPLv2+/GPLv2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.34/%{name}-%{version}.tar.xz
-# Source0-md5:	736f11821d785512bc92c0fe50968c5a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.36/%{name}-%{version}.tar.xz
+# Source0-md5:	2ab2369b73b3f3a6e40539815fbc69d5
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-devel
@@ -35,6 +35,12 @@ This is the package containing the header files for GJS library.
 
 %prep
 %setup -q
+# kill gnome common deps
+%{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
+    -i -e 's/GNOME_MAINTAINER_MODE_DEFINES//g'	\
+    -i -e 's/GNOME_COMMON_INIT//g'		\
+    -i -e 's/GNOME_CXX_WARNINGS.*//g'		\
+    -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
 
 %build
 %{__libtoolize}
@@ -65,16 +71,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/gjs-1.0/*.so
 %{_datadir}/gjs-1.0
 
 %files libs
 %defattr(644,root,root,755)
-%dir %{_libdir}/gjs-1.0
-%attr(755,root,root) %ghost %{_libdir}/lib*.so.?
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %dir %{_libdir}/gjs
 %dir %{_libdir}/gjs/girepository-1.0
+%attr(755,root,root) %ghost %{_libdir}/lib*.so.?
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %{_libdir}/gjs/girepository-1.0/*.typelib
 
 %files devel
