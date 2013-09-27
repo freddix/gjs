@@ -1,16 +1,16 @@
 Summary:	GObject-introspection based JavaScript bindings
 Name:		gjs
-Version:	1.36.1
+Version:	1.38.1
 Release:	1
 License:	MPL1.1/LGPLv2+/GPLv2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.36/%{name}-%{version}.tar.xz
-# Source0-md5:	871348235ce8b8cadfa064eeb0bed6dc
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.38/%{name}-%{version}.tar.xz
+# Source0-md5:	0f3422a114cb69735274e75e325013a3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-devel
-BuildRequires:	gobject-introspection-devel
-BuildRequires:	js-devel
+BuildRequires:	gobject-introspection-devel >= 1.38.0
+BuildRequires:	js-devel >= 17.0.0
 BuildRequires:	libtool
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
