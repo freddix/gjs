@@ -1,16 +1,16 @@
 Summary:	GObject-introspection based JavaScript bindings
 Name:		gjs
-Version:	1.38.1
-Release:	1
+Version:	1.40.0
+Release:	2
 License:	MPL1.1/LGPLv2+/GPLv2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.38/%{name}-%{version}.tar.xz
-# Source0-md5:	0f3422a114cb69735274e75e325013a3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.40/%{name}-%{version}.tar.xz
+# Source0-md5:	17f0ce474fbe6dda423a97c7f22fb073
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-devel
-BuildRequires:	gobject-introspection-devel >= 1.38.0
-BuildRequires:	js-devel >= 17.0.0
+BuildRequires:	gobject-introspection-devel >= 1.40.0
+BuildRequires:	mozjs24-devel
 BuildRequires:	libtool
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -59,7 +59,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gjs-1.0/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,8 +70,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_bindir}/*
-%{_datadir}/gjs-1.0
+%attr(755,root,root) %{_bindir}/gjs
+%attr(755,root,root) %{_bindir}/gjs-console
 
 %files libs
 %defattr(644,root,root,755)
@@ -84,7 +84,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 %{_includedir}/gjs-1.0
 %{_pkgconfigdir}/*.pc
 
