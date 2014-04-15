@@ -1,11 +1,11 @@
 Summary:	GObject-introspection based JavaScript bindings
 Name:		gjs
-Version:	1.40.0
-Release:	2
+Version:	1.40.1
+Release:	1
 License:	MPL1.1/LGPLv2+/GPLv2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.40/%{name}-%{version}.tar.xz
-# Source0-md5:	17f0ce474fbe6dda423a97c7f22fb073
+# Source0-md5:	150580858bc40d0dbc9df43741eb2ad3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-devel
