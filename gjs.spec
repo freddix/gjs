@@ -1,15 +1,15 @@
 Summary:	GObject-introspection based JavaScript bindings
 Name:		gjs
-Version:	1.40.1
+Version:	1.42.0
 Release:	1
 License:	MPL1.1/LGPLv2+/GPLv2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.40/%{name}-%{version}.tar.xz
-# Source0-md5:	150580858bc40d0dbc9df43741eb2ad3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gjs/1.42/%{name}-%{version}.tar.xz
+# Source0-md5:	a30ff5e3e13498c4d3c95d2555751c4d
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	dbus-devel
-BuildRequires:	gobject-introspection-devel >= 1.40.0
+BuildRequires:	gobject-introspection-devel >= 1.42.0
 BuildRequires:	mozjs24-devel
 BuildRequires:	libtool
 Requires:	%{name}-libs = %{version}-%{release}
@@ -35,12 +35,13 @@ This is the package containing the header files for GJS library.
 
 %prep
 %setup -q
+
 # kill gnome common deps
-%{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
-    -i -e 's/GNOME_MAINTAINER_MODE_DEFINES//g'	\
-    -i -e 's/GNOME_COMMON_INIT//g'		\
-    -i -e 's/GNOME_CXX_WARNINGS.*//g'		\
-    -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
+%{__sed} -i -e '/GNOME_COMPILE_WARNINGS.*/d'	\
+    -i -e '/GNOME_MAINTAINER_MODE_DEFINES/d'	\
+    -i -e '/GNOME_COMMON_INIT/d'		\
+    -i -e '/GNOME_CXX_WARNINGS.*/d'		\
+    -i -e '/GNOME_DEBUG_CHECK/d' configure.ac
 
 %build
 %{__libtoolize}
